@@ -6,10 +6,13 @@
 </head>
 
 <body>
+
     <p>Computer</p>
     <span id="computer"></span>
+
     <p>Jouw keuze:</p>
     <span id="human"></span>
+
     <p>Uitkomst:</p>
     <span id="result"></span>
 
@@ -20,32 +23,39 @@
     <script>
 
         const humanOutput = document.querySelector("#human");
+        const computerOutput = document.querySelector("#computer");
+        const resultOutput = document.querySelector("#result");
+
+        // Startteksten
+        humanOutput.innerHTML = "Jouw keuze komt hier, maak je keuze!";
+        computerOutput.innerHTML = "Computer keuze komt hier!";
+        resultOutput.innerHTML = "Resultaat komt hier!";
 
         let computerChoice = "";
         let humanChoice = "";
 
-        humanOutput.innerHTML = "Jouw keuze komt hier, maak je keuze!";
+        function speelRonde(choice) {
 
-        const computerOutput = document.querySelector("#computer");
-        computerOutput.innerHTML = "Computer keuze komt hier!";
-
-        const resultOutput = document.querySelector("#result");
-        resultOutput.innerHTML = "Resultaat komt hier!";
-
-        const steenBtn = document.querySelector("#steen");
-        steenBtn.addEventListener("click", function (event) {
-            humanChoice = event.target.id;
+            // Spelerkeuze
+            humanChoice = choice;
             humanOutput.innerHTML = humanChoice;
+
+            // Willekeurige keuze vd computer
             const randomNumber = Math.floor(Math.random() * 3) + 1;
+
             if (randomNumber === 1) {
                 computerChoice = "steen";
-            } if (randomNumber === 2) {
+            }
+            if (randomNumber === 2) {
                 computerChoice = "papier";
-            } if (randomNumber === 3) {
+            }
+            if (randomNumber === 3) {
                 computerChoice = "schaar";
             }
+
             computerOutput.innerHTML = computerChoice;
 
+            // Winnaar bepaling
             if (humanChoice === computerChoice) {
                 resultOutput.innerHTML = "Gelijkspel!";
             } else if (
@@ -56,64 +66,20 @@
                 resultOutput.innerHTML = "Je hebt gewonnen!";
             } else {
                 resultOutput.innerHTML = "De computer heeft gewonnen!";
-
             }
+        }
+
+        // Event listeners verkort in versie 2
+        document.querySelector("#steen").addEventListener("click", function () {
+            speelRonde("steen");
         });
 
-        const papierBtn = document.querySelector("#papier");
-        papierBtn.addEventListener("click", function (event) {
-            humanChoice = event.target.id;
-            humanOutput.innerHTML = humanChoice;
-            const randomNumber = Math.floor(Math.random() * 3) + 1;
-            if (randomNumber === 1) {
-                computerChoice = "steen";
-            } if (randomNumber === 2) {
-                computerChoice = "papier";
-            } if (randomNumber === 3) {
-                computerChoice = "schaar";
-            }
-            computerOutput.innerHTML = computerChoice;
-
-            if (humanChoice === computerChoice) {
-                resultOutput.innerHTML = "Gelijkspel!";
-            } else if (
-                (humanChoice === "steen" && computerChoice === "schaar") ||
-                (humanChoice === "papier" && computerChoice === "steen") ||
-                (humanChoice === "schaar" && computerChoice === "papier")
-            ) {
-                resultOutput.innerHTML = "Je hebt gewonnen!";
-            } else {
-                resultOutput.innerHTML = "De computer heeft gewonnen!";
-
-            }
+        document.querySelector("#papier").addEventListener("click", function () {
+            speelRonde("papier");
         });
 
-        const schaarBtn = document.querySelector("#schaar");
-        schaarBtn.addEventListener("click", function (event) {
-            humanChoice = event.target.id;
-            humanOutput.innerHTML = humanChoice;
-            const randomNumber = Math.floor(Math.random() * 3) + 1;
-            if (randomNumber === 1) {
-                computerChoice = "steen";
-            } if (randomNumber === 2) {
-                computerChoice = "papier";
-            } if (randomNumber === 3) {
-                computerChoice = "schaar";
-            }
-            computerOutput.innerHTML = computerChoice;
-
-            if (humanChoice === computerChoice) {
-                resultOutput.innerHTML = "Gelijkspel!";
-            } else if (
-                (humanChoice === "steen" && computerChoice === "schaar") ||
-                (humanChoice === "papier" && computerChoice === "steen") ||
-                (humanChoice === "schaar" && computerChoice === "papier")
-            ) {
-                resultOutput.innerHTML = "Je hebt gewonnen!";
-            } else {
-                resultOutput.innerHTML = "De computer heeft gewonnen!";
-
-            }
+        document.querySelector("#schaar").addEventListener("click", function () {
+            speelRonde("schaar");
         });
 
     </script>
