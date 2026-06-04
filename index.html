@@ -34,7 +34,7 @@
         let computerChoice = "";
         let humanChoice = "";
 
-        function speelRonde(choice) {
+        function round(choice) {
 
             // Spelerkeuze
             humanChoice = choice;
@@ -69,17 +69,13 @@
             }
         }
 
-        // Event listeners verkort in versie 2
-        document.querySelector("#steen").addEventListener("click", function () {
-            speelRonde("steen");
-        });
+        // Event listeners
+        document.body.addEventListener("click", function (event) {
 
-        document.querySelector("#papier").addEventListener("click", function () {
-            speelRonde("papier");
-        });
+            if (event.target.tagName === "BUTTON") {
+                round(event.target.id);
+            }
 
-        document.querySelector("#schaar").addEventListener("click", function () {
-            speelRonde("schaar");
         });
 
     </script>
