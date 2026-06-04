@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Steen Papier Schaar</title>
+</head>
+
+<body>
+    <p>Computer</p>
+    <span id="computer"></span>
+    <p>Jouw keuze:</p>
+    <span id="human"></span>
+    <p>Uitkomst:</p>
+    <span id="result"></span>
+
+    <button id="steen">Steen</button>
+    <button id="papier">Papier</button>
+    <button id="schaar">Schaar</button>
+
+    <script>
+
+        const humanOutput = document.querySelector("#human");
+
+        let computerChoice = "";
+        let humanChoice = "";
+
+        humanOutput.innerHTML = "Jouw keuze komt hier, maak je keuze!";
+
+        const computerOutput = document.querySelector("#computer");
+        computerOutput.innerHTML = "Computer keuze komt hier!";
+
+        const resultOutput = document.querySelector("#result");
+        resultOutput.innerHTML = "Resultaat komt hier!";
+
+        const steenBtn = document.querySelector("#steen");
+        steenBtn.addEventListener("click", function (event) {
+            humanChoice = event.target.id;
+            humanOutput.innerHTML = humanChoice;
+            const randomNumber = Math.floor(Math.random() * 3) + 1;
+            if (randomNumber === 1) {
+                computerChoice = "steen";
+            } if (randomNumber === 2) {
+                computerChoice = "papier";
+            } if (randomNumber === 3) {
+                computerChoice = "schaar";
+            }
+            computerOutput.innerHTML = computerChoice;
+
+            if (humanChoice === computerChoice) {
+                resultOutput.innerHTML = "Gelijkspel!";
+            } else if (
+                (humanChoice === "steen" && computerChoice === "schaar") ||
+                (humanChoice === "papier" && computerChoice === "steen") ||
+                (humanChoice === "schaar" && computerChoice === "papier")
+            ) {
+                resultOutput.innerHTML = "Je hebt gewonnen!";
+            } else {
+                resultOutput.innerHTML = "De computer heeft gewonnen!";
+
+            }
+        });
+
+        const papierBtn = document.querySelector("#papier");
+        papierBtn.addEventListener("click", function (event) {
+            humanChoice = event.target.id;
+            humanOutput.innerHTML = humanChoice;
+            const randomNumber = Math.floor(Math.random() * 3) + 1;
+            if (randomNumber === 1) {
+                computerChoice = "steen";
+            } if (randomNumber === 2) {
+                computerChoice = "papier";
+            } if (randomNumber === 3) {
+                computerChoice = "schaar";
+            }
+            computerOutput.innerHTML = computerChoice;
+
+            if (humanChoice === computerChoice) {
+                resultOutput.innerHTML = "Gelijkspel!";
+            } else if (
+                (humanChoice === "steen" && computerChoice === "schaar") ||
+                (humanChoice === "papier" && computerChoice === "steen") ||
+                (humanChoice === "schaar" && computerChoice === "papier")
+            ) {
+                resultOutput.innerHTML = "Je hebt gewonnen!";
+            } else {
+                resultOutput.innerHTML = "De computer heeft gewonnen!";
+
+            }
+        });
+
+        const schaarBtn = document.querySelector("#schaar");
+        schaarBtn.addEventListener("click", function (event) {
+            humanChoice = event.target.id;
+            humanOutput.innerHTML = humanChoice;
+            const randomNumber = Math.floor(Math.random() * 3) + 1;
+            if (randomNumber === 1) {
+                computerChoice = "steen";
+            } if (randomNumber === 2) {
+                computerChoice = "papier";
+            } if (randomNumber === 3) {
+                computerChoice = "schaar";
+            }
+            computerOutput.innerHTML = computerChoice;
+
+            if (humanChoice === computerChoice) {
+                resultOutput.innerHTML = "Gelijkspel!";
+            } else if (
+                (humanChoice === "steen" && computerChoice === "schaar") ||
+                (humanChoice === "papier" && computerChoice === "steen") ||
+                (humanChoice === "schaar" && computerChoice === "papier")
+            ) {
+                resultOutput.innerHTML = "Je hebt gewonnen!";
+            } else {
+                resultOutput.innerHTML = "De computer heeft gewonnen!";
+
+            }
+        });
+
+    </script>
+
+</body>
+
+</html>
