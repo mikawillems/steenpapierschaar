@@ -34,6 +34,9 @@
         let computerChoice = "";
         let humanChoice = "";
 
+        let playerScore = 0;
+        let computerScore = 0;
+
         function round(choice) {
 
             // Spelerkeuze
@@ -65,9 +68,11 @@
                 (humanChoice === "papier" && computerChoice === "steen") ||
                 (humanChoice === "schaar" && computerChoice === "papier")
             ) {
+                playerScore++;
                 resultOutput.innerHTML = "Je hebt gewonnen!";
             } else {
-                resultOutput.innerHTML = "De computer heeft gewonnen!";
+                computerScore++;
+                resultOutput.innerHTML = "De computer heeft gewonnen! Score: " + playerScore + " - " + computerScore
             }
         }
 
