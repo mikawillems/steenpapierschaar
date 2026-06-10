@@ -37,6 +37,8 @@
         let playerScore = 0;
         let computerScore = 0;
 
+        let streak = 0;
+
         function round(choice) {
 
             // Spelerkeuze
@@ -69,10 +71,12 @@
                 (humanChoice === "schaar" && computerChoice === "papier")
             ) {
                 playerScore++;
-                resultOutput.innerHTML = "Je hebt gewonnen!";
+                streak++;
+                resultOutput.innerHTML = "Je hebt gewonnen! Je streak is: " + streak + " Score: " + playerScore + " - " + computerScore;
             } else {
                 computerScore++;
-                resultOutput.innerHTML = "De computer heeft gewonnen! Score: " + playerScore + " - " + computerScore
+                streak = 0;
+                resultOutput.innerHTML = "De computer heeft gewonnen! Score: " + playerScore + " - " + computerScore + " Je streak is gereset."
             }
         }
 
