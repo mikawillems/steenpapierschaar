@@ -3,9 +3,53 @@
 
 <head>
     <title>Steen Papier Schaar</title>
+
+    <style>
+        body {
+            background-color: #1e1e2f;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        p {
+            margin-top: 15px;
+        }
+
+        span {
+            display: block; /* zorgt dat tekst onder elkaar komt */
+            margin-top: 5px;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        button {
+            margin: 10px;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 8px; /* afgeronde hoeken */
+            background-color: #3a86ff;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.2s; /* animatie bij hover */
+        }
+
+        button:hover {
+            background-color: #265fd4;
+            transform: scale(1.05); /* klein zoom effect */
+        }
+    </style>
+
+    <!-- externe library voor confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
 </head>
 
 <body>
+
+    <h1>Steen Papier Schaar</h1>
 
     <p>Computer</p>
     <span id="computer"></span>
@@ -16,17 +60,20 @@
     <p>Uitkomst:</p>
     <span id="result"></span>
 
+    <br>
+
     <button id="steen">Steen</button>
     <button id="papier">Papier</button>
     <button id="schaar">Schaar</button>
 
     <script>
 
+        // koppel HTML elementen aan JS
         const humanOutput = document.querySelector("#human");
         const computerOutput = document.querySelector("#computer");
         const resultOutput = document.querySelector("#result");
 
-        // Startteksten
+        // begin teksten
         humanOutput.innerHTML = "Jouw keuze komt hier, maak je keuze!";
         computerOutput.innerHTML = "Computer keuze komt hier!";
         resultOutput.innerHTML = "Resultaat komt hier!";
@@ -41,13 +88,13 @@
 
         function round(choice) {
 
-            // Spelerkeuze
             humanChoice = choice;
             humanOutput.innerHTML = humanChoice;
 
-            // Willekeurige keuze vd computer
+            // random getal tussen 1 en 3
             const randomNumber = Math.floor(Math.random() * 3) + 1;
 
+            // zet nummer om naar keuze
             switch (randomNumber) {
                 case 1:
                     computerChoice = "steen";
@@ -62,7 +109,7 @@
 
             computerOutput.innerHTML = computerChoice;
 
-            // Winnaar bepaling
+            // check wie wint
             if (humanChoice === computerChoice) {
                 resultOutput.innerHTML = "Gelijkspel!";
             } else if (
@@ -72,15 +119,22 @@
             ) {
                 playerScore++;
                 streak++;
-                resultOutput.innerHTML = "Je hebt gewonnen! Je streak is: " + streak + " Score: " + playerScore + " - " + computerScore;
+
+                confetti({
+                    particleCount: 100,
+                    spread: 100,
+                    origin: { y: 0.5 }
+                });
+
+                resultOutput.innerHTML = "Je hebt gewonnen! Streak: " + streak + " Score: " + playerScore + " - " + computerScore;
             } else {
                 computerScore++;
-                streak = 0;
-                resultOutput.innerHTML = "De computer heeft gewonnen! Score: " + playerScore + " - " + computerScore + " Je streak is gereset."
+                streak = 0; // streak reset bij verlies
+
+                resultOutput.innerHTML = "Computer wint! Score: " + playerScore + " - " + computerScore;
             }
         }
 
-        // Event listeners
         document.body.addEventListener("click", function (event) {
 
             if (event.target.tagName === "BUTTON") {
